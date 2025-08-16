@@ -77,8 +77,6 @@ inputEl.addEventListener("keydown", () => {
         errorFill.style.display = "none";
     }
     count = 1;
-    console.log(count);
-    
 })
 
 formEl.addEventListener("submit", (e) => {
@@ -136,6 +134,7 @@ toDoListsWrapperEl.addEventListener("click", (e) => {
         const id = eventTarget.closest(".to_do").dataset.id;
         editingItem = toDoData.find(item => item.id === Number(id));
         inputEl.value = editingItem.desc;
+        eventTarget.closest(".to_do").style.borderColor = "white";
     }
 
     if (eventTarget.classList.contains("toggle_to_do")) {
