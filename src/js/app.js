@@ -68,6 +68,19 @@ renderToDoData();
 
 let editingItem = null;
 
+inputEl.addEventListener("keydown", () => {
+    let count = 0;
+    if (!inputEl.value && count) {
+        errorFill.style.display = "block";
+        return
+    } else {
+        errorFill.style.display = "none";
+    }
+    count = 1;
+    console.log(count);
+    
+})
+
 formEl.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!inputEl.value) {
@@ -86,6 +99,7 @@ formEl.addEventListener("submit", (e) => {
         formBtn.textContent = "Create";
         formBtn.style.color = "black";
         formBtn.style.backgroundColor = "#cafe6e";
+        editingItem = null;
     } else {
         const newTodo = {
             desc: inputEl.value,
@@ -149,8 +163,6 @@ allBtn.addEventListener("click", () => {
     doneBtn.style.borderColor = "";
     toBeDoneBtn.style.borderColor = "";
     tabsData = "all";
-    console.log(tabsData);
-
     renderToDoData(tabsData);
 })
 
@@ -160,8 +172,6 @@ doneBtn.addEventListener("click", () => {
     doneBtn.style.borderColor = "white";
     toBeDoneBtn.style.borderColor = "";
     tabsData = "done"
-    console.log(tabsData);
-
     renderToDoData(tabsData);
 })
 
@@ -170,7 +180,5 @@ toBeDoneBtn.addEventListener("click", () => {
     doneBtn.style.borderColor = "";
     toBeDoneBtn.style.borderColor = "white";
     tabsData = "toBeDone"
-    console.log(tabsData);
-
     renderToDoData(tabsData);
 })
