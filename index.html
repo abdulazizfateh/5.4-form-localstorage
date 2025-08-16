@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/output.css">
+</head>
+
+<body>
+    <header class="site_header border-b border-gray-600">
+        <div class="container">
+            <nav class="h-[60px] flex items-center justify-center">
+                <p class="text-xl">Your daily to do list</p>
+            </nav>
+        </div>
+    </header>
+    <div class="to_do_list">
+        <div class="container">
+            <div class="flex flex-col gap-4 max-w-[650px] mx-auto w-full my-5">
+                <div class="max-w-[650px] mx-auto w-full flex items-center justify-end">
+                    <form class="form w-full flex items-center gap-1.5">
+                        <input
+                            class="to_do_input w-full h-[50px] focus:border-gray-200 border border-gray-400 outline-none px-4 placeholder:text-gray-400"
+                            type="text" placeholder="Type your to do">
+                        <button
+                            class="w-40 bg-[#00bcff] border border-transparent h-[50px] duration-75 ease-out active:bg-[#78d4f6]">Create</button>
+                    </form>
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                    <div class="flex items-center gap-1.5">
+                        <button class="filter_btn all">All</button>
+                        <button class="filter_btn done">Done</button>
+                        <button class="filter_btn to_be_done">To be done</button>
+                    </div>
+                    <p class="checklist"></p>
+                </div>
+                <div class="to_do_list_wrapper flex flex-col gap-2.5 max-w-[650px] mx-auto w-full">
+                </div>
+                <div class="no_to_do_list w-full flex items-center justify-center h-[65vh]">
+                    <p>No to do list found</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./src/js/app.js"></script>
+</body>
+
+</html>

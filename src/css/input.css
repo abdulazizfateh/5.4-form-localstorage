@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+
+@theme {
+    --font-G: 'Gill Sans';
+
+    --color-primary: #111;
+    --color-secondary: #cbfd6e;
+}
+
+* {
+    font-family: var(--font-G);
+}
+
+body {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.to_do {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    border: 1px solid #4a5565;
+}
+
+.add_btn {
+    height: 32px;
+    border: 1px solid #4a5565;
+    padding: 0 18px;
+}
+
+.filter_btn {
+    height: 32px;
+    border: 1px solid #4a5565;
+    padding: 0 18px;
+}
