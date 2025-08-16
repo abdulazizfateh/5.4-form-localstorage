@@ -20,15 +20,22 @@
         <div class="container">
             <div class="flex flex-col gap-4 max-w-[650px] mx-auto w-full my-5">
                 <div class="max-w-[650px] mx-auto w-full flex items-center justify-end">
-                    <form class="form w-full flex items-center gap-1.5">
-                        <input
-                            class="to_do_input w-full h-[50px] focus:border-gray-200 border border-gray-400 outline-none px-4 placeholder:text-gray-400"
-                            type="text" placeholder="Type your to do">
-                        <button
-                            class="w-40 bg-[#00bcff] border border-transparent h-[50px] duration-75 ease-out active:bg-[#78d4f6]">Create</button>
+                    <form class="form w-full">
+                        <div class="flex items-center gap-1.5">
+                            <input
+                                class="to_do_input w-full h-[50px] focus:border-gray-200 border border-gray-400 outline-none px-4 placeholder:text-gray-400"
+                                type="text" placeholder="Type your to do">
+                            <button
+                                class="form_button w-40 text-black bg-[#cafe6e] border border-transparent h-[50px] duration-75 ease-out active:bg-[#78d4f6]">
+                                Create
+                            </button>
+                        </div>
+                        <div class="h-[28px] flex items-center">
+                            <p class="fill_text_info text-red-500 hidden">Please, type your to do</p>
+                        </div>
                     </form>
                 </div>
-                <div class="flex items-center justify-between mt-4">
+                <div class="flex items-center justify-between mt-1">
                     <div class="flex items-center gap-1.5">
                         <button class="filter_btn all">All</button>
                         <button class="filter_btn done">Done</button>

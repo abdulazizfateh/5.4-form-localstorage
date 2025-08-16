@@ -7,13 +7,15 @@ const doneBtn = document.querySelector(".done");
 const toBeDoneBtn = document.querySelector(".to_be_done");
 const formEl = document.querySelector(".form");
 const inputEl = document.querySelector(".to_do_input");
+const formBtn = document.querySelector(".form_button");
+const errorFill = document.querySelector(".fill_text_info");
 
 
 
 let toDoData = JSON.parse(localStorage.getItem("data")) || [];
 const inputFocus = () => {
     if (!toDoData.length) {
-        inputEl.focus()
+        inputEl.focus();
     }
 }
 inputFocus();
@@ -40,7 +42,7 @@ const renderToDoData = (filter) => {
         const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
 
         const formattedDate = `${day}.${month}`;
-        return formattedDate
+        return formattedDate;
     }
 
     toDoListsWrapperEl.innerHTML = filteredData.map((item, index) => {
@@ -52,6 +54,7 @@ const renderToDoData = (filter) => {
                         <span>${item.desc}</span>
                     </div>
                     <div class="flex items-center gap-4">
+                    <button class="edit_btn text-[#00bcff] select-none">Edit</button>
                     <button class="delete_btn text-red-500 select-none">Delete</button>
                         <button class="toggle_to_do border border-gray-400 size-6 flex items-center justify-center text-red-500">
                             ${item.done ? `<img class="toggle_to_do size-5" src="./src/assets/checked.svg" alt="">` : ``}
@@ -63,18 +66,34 @@ const renderToDoData = (filter) => {
 }
 renderToDoData();
 
+let editingItem = null;
 
 formEl.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!inputEl.value) {
+        errorFill.style.display = "block";
         return
+    } else {
+        errorFill.style.display = "none";
     }
-    const newTodo = {
-        desc: inputEl.value,
-        id: new Date().getTime(),
-        done: false
+    if (editingItem) {
+        const editedItem = {
+            desc: inputEl.value,
+            id: editingItem.id,
+            done: editingItem.done
+        }
+        toDoData = toDoData.map((item) => item.id === editedItem.id ? editedItem : item);
+        formBtn.textContent = "Create";
+        formBtn.style.color = "black";
+        formBtn.style.backgroundColor = "#cafe6e";
+    } else {
+        const newTodo = {
+            desc: inputEl.value,
+            id: new Date().getTime(),
+            done: false
+        }
+        toDoData.push(newTodo);
     }
-    toDoData.push(newTodo);
     localStorage.setItem("data", JSON.stringify(toDoData));
     renderToDoData();
     countCheckedToDo();
@@ -94,6 +113,15 @@ toDoListsWrapperEl.addEventListener("click", (e) => {
         renderToDoData();
         countCheckedToDo();
         inputFocus();
+    }
+    if (eventTarget.classList.contains("edit_btn")) {
+        formBtn.textContent = "Save";
+        formBtn.style.color = "white";
+        formBtn.style.backgroundColor = "#00bcff";
+        inputEl.focus();
+        const id = eventTarget.closest(".to_do").dataset.id;
+        editingItem = toDoData.find(item => item.id === Number(id));
+        inputEl.value = editingItem.desc;
     }
 
     if (eventTarget.classList.contains("toggle_to_do")) {
